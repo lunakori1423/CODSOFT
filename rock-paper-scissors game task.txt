@@ -1,0 +1,46 @@
+#codsoft
+#rock-paper-scissor game python program
+import random
+def get_humanplayer1_choice():
+    while True:
+        humanplayer1_choice = input("select any one :rock, paper, or scissors: ").lower()
+        if humanplayer1_choice in ["rock", "paper", "scissors"]:
+            return humanplayer1_choice
+        else:
+            print("Error: Please enter rock, paper, or scissors.")
+def get_systemplayer2_choice():
+    return random.choice(["rock", "paper", "scissors"])
+def determine_winner(humanplayer1_choice, systemplayer2_choice):
+    if humanplayer1_choice == systemplayer2_choice:
+        return "*It's a draw!!!*"
+    elif (humanplayer1_choice == "rock" and systemplayer2_choice == "scissors") or \
+         (humanplayer1_choice == "scissors" and systemplayer2_choice == "paper") or \
+         (humanplayer1_choice == "paper" and systemplayer2_choice == "rock"):
+        return "*human player 1 wins the round!!!*"
+    else:
+        return "*system player 2 wins the round!!*"
+def main():
+    humanplayer1_score = 0
+    systemplayer2_score = 0
+    while True:
+        humanplayer1_choice = get_humanplayer1_choice()
+        systemplayer2_choice = get_systemplayer2_choice()
+        print(f"\nYour choice: {humanplayer1_choice}")
+        print(f"Computer's choice: {systemplayer2_choice}")
+        result = determine_winner(humanplayer1_choice, systemplayer2_choice)
+        print(result)
+        if result == "*human player 1 wins the round!!!*":
+            humanplayer1_score += 1
+        elif result == "*system player 2 wins the round!!*":
+            systemplayer2_score += 1
+        play_again = input("\nDo you want to play again? (yes/no): ").lower()
+        if play_again != "yes":
+            break
+        print("congrats!!")
+    print(f"\nFinal scores: You {humanplayer1_score} - Computer {systemplayer2_score}")
+    if humanplayer1_score > systemplayer2_score:
+        print("Congrats!! hooray! Human player 1 wins!")
+    else:
+        print("Oops!!!! System won. Better luck next time!")
+if __name__ == "__main__":
+    main()
